@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-        <form method="POST" action="{{ route('tasks.update', $task) }}">
+        <form hx-post="{{ route('tasks.update', $task) }}" hx-target="body" hx-swap="outerHTML" hx-push-url="{{ route('tasks.index')}}">
             @csrf
             @method('patch')
 
@@ -32,7 +32,7 @@
             <!-- Buttons -->
             <div class="mt-4 space-x-2">
                 <x-primary-button>{{ __('Save') }}</x-primary-button>
-                <a href="{{ route('tasks.index') }}" class="text-indigo-600 hover:underline">{{ __('Cancel') }}</a>
+                <a  href="{{ route('tasks.index') }}" hx-boost="true" hx-push-url="{{ route('tasks.index')}}">{{ __('Cancel') }}</a>
             </div>
         </form>
     </div>
